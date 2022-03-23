@@ -1,4 +1,10 @@
-from rich.console import Console
+import os
+
+try:
+    from rich.console import Console
+except ImportError:
+    os.system('pip install -U rich')
+    from rich.console import Console
 
 from data.warningLevel import WARNING_LEVEL
 

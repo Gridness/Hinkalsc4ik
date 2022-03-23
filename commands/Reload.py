@@ -17,7 +17,12 @@ class Reload(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def reload(self, ctx):
         log('Reloading extensions...', WARNING_LEVEL['medium'])
-        for filename in os.listdir('./cogs'):
-            if filename.endswith(".py"):
-                self.client.reload_extension(f'cogs.{filename[:-3]}')
+        try:
+            for filename in os.listdir('./cogs'):
+                if filename.endswith(".py"):
+                    self.client.reload_extension(f'cogs.{filename[:-3]}')
+        except Exception:
+            log('An error occured while trying to reload extensions', WARNING_LEVEL['high'])
+            raise Exception('Failed to reload extensions')
+
         log('Reload completed', WARNING_LEVEL['medium'])
