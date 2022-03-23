@@ -1,7 +1,8 @@
 import nextcord
 from nextcord.ext import commands
 
-from data.settings import GUILDS
+from data.settings import EMBED_COLOR, GUILDS
+from utils.buildEmbed import build_embed
 
 class Purge(commands.Cog):
     def __init__(self, client) -> None:
@@ -12,5 +13,6 @@ class Purge(commands.Cog):
 
     @nextcord.slash_command(name='purge', guild_ids=[GUILDS], description='Removes all roles from a user')
     @commands.has_permissions(administrator=True)
-    async def purge(self, interaction: nextcord.Interaction):
-        await interaction.response.send_message('NOT IMPLEMENTED YET')
+    async def purge(self, member: nextcord.Member):
+        await member.remove_roles()
+        await member.send(embed=build_embed(self.client, 'НАКОЛОЧКИ, НАКОЛОЧКИ', 'ГОП, ТАТУИРОВОЧКИ', EMBED_COLOR, False))

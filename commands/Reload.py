@@ -15,7 +15,7 @@ class Reload(commands.Cog):
 
     @nextcord.slash_command(name='reload', guild_ids=[GUILDS], description='Reloads the bot')
     @commands.has_permissions(administrator=True)
-    async def reload(self, ctx):
+    async def reload(self):
         log('Reloading extensions...', WARNING_LEVEL['medium'])
         try:
             for filename in os.listdir('./cogs'):
