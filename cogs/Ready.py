@@ -15,9 +15,6 @@ class Ready(commands.Cog):
     def __init__(self, client) -> None:
         self.client = client
 
-    def setup(client):
-        client.add_cog(Ready(client))
-
     @commands.Cog.listener()
     async def on_ready(self):
         now = datetime.datetime.now()
@@ -43,3 +40,6 @@ class Ready(commands.Cog):
         Phrases.changePresence.start(self)
    
         log(f'{self.client.user} is online')
+
+def setup(client):
+    client.add_cog(Ready(client))

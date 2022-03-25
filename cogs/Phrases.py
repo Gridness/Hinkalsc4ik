@@ -10,11 +10,11 @@ class Phrases(commands.Cog):
     def __init__(self, client) -> None:
         self.client = client
 
-    def setup(client):
-        client.add_cog(Phrases(client))
-
     @tasks.loop(seconds=STATUS_LOOP_TIME)
     async def changePresence(self):
         newPresence = pickAndRemoveRepeatingStatuses(PRESENCE_PHRASES)
         await self.client.change_presence(activity=nextcord.Game(name=newPresence))
         log(f'Changed presence to {newPresence}')
+
+def setup(client):
+    client.add_cog(Phrases(client))

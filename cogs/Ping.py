@@ -8,9 +8,6 @@ class Ping(commands.Cog):
     def __init__(self, client) -> None:
         self.client = client
 
-    def setup(client):
-        client.add_cog(Ping(client))
-
     @tasks.loop(seconds=PING_LOOP_TIME)
     async def getPing(self):
         latency = round(self.client.latency * 1000, 2)
@@ -20,3 +17,6 @@ class Ping(commands.Cog):
             log('High latency. The bot may be slow to respond', WARNING_LEVEL['medium'])
         elif latency >= 500:
             log('Extreme latency. The bot may not work properly', WARNING_LEVEL['high'])
+
+def setup(client):
+    client.add_cog(Ping(client))

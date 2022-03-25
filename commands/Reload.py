@@ -2,7 +2,7 @@ import os
 import nextcord
 from nextcord.ext import commands
 
-from data.settings import GUILDS
+from data.settings import SERVER_ID
 from data.warningLevel import WARNING_LEVEL
 from utils.log import log
 
@@ -10,10 +10,7 @@ class Reload(commands.Cog):
     def __init__(self, client) -> None:
         self.client = client
 
-    def setup(client):
-        client.add_cog(Reload(client))
-
-    @nextcord.slash_command(name='reload', guild_ids=[GUILDS], description='Reloads the bot')
+    @nextcord.slash_command(name='reload', guild_ids=[SERVER_ID], description='Reloads the bot')
     @commands.has_permissions(administrator=True)
     async def reload(self):
         log('Reloading extensions...', WARNING_LEVEL['medium'])
@@ -26,3 +23,6 @@ class Reload(commands.Cog):
             raise Exception('Failed to reload extensions')
 
         log('Reload completed', WARNING_LEVEL['medium'])
+
+def setup(client):
+    client.add_cog(Reload(client))

@@ -14,3 +14,5 @@ def pickAndRemoveRepeatingStatuses(statuses):
     previousStatuses.append(status)
     if sorted(previousStatuses) == sorted(PRESENCE_PHRASES):
         previousStatuses.clear()
+
+    return status
