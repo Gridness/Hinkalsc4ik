@@ -1,0 +1,12 @@
+{
+    "network" : {
+        "highLatencyThreshold" : 300,
+        "extremeLatencyThreshold" : 500
+    },
+
+    "logging" : {
+        "displayPing" : true,
+        "displayPresenceChange" : true,
+        "displayQueries" : false
+    }
+}

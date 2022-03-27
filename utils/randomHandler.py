@@ -12,7 +12,7 @@ def pickAndRemoveRepeatingStatuses(statuses):
         status = random.choice(statuses)
 
     previousStatuses.append(status)
-    if sorted(previousStatuses) == sorted(PRESENCE_PHRASES):
+    if len(previousStatuses) == len(PRESENCE_PHRASES):
         previousStatuses.clear()
 
     return status

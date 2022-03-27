@@ -1,5 +1,4 @@
 import logging
-import os
 import datetime
 from nextcord.ext import commands
 
@@ -9,6 +8,7 @@ from data.meta import META
 from data.warningLevel import WARNING_LEVEL
 from utils.cls import cls
 from utils.log import log
+from utils.execute_sql import execute_sql
 from views.RoleView import RoleView
 
 class Ready(commands.Cog):
@@ -26,6 +26,9 @@ class Ready(commands.Cog):
         handler = logging.FileHandler(filename='nextcord.log', encoding='utf-8', mode='w')
         handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
         logger.addHandler(handler)
+
+        execute_sql('CREATE TABLE IF NOT EXISTS jokes (jokeID INTEGER, joke TEXT, PRIMARY KEY("jokeID" AUTOINCREMENT))')
+        execute_sql('CREATE TABLE IF NOT EXISTS statuses (statusID INTEGER, status TEXT, PRIMARY KEY("statusID" AUTOINCREMENT))')
 
         if now.year == 2022:
             log(f'{META["name"]} {META["ver"]} (c) {META["dev"]} 2022', WARNING_LEVEL['medium'], logType='print')
