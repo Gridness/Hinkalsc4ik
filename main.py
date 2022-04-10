@@ -1,5 +1,5 @@
 import os
-import sys
+from utils.loadExtensions import loadExtensions
 
 try:
     import nextcord
@@ -22,30 +22,31 @@ def main():
     client = commands.Bot(command_prefix = 'abobus!', intents = intents)
 
     log('Loading extensions...', WARNING_LEVEL['medium'])
-    try:
-        for filename in os.listdir('./cogs'):
-            if filename.endswith(".py"):
-                client.load_extension(f'cogs.{filename[:-3]}')
-                log(f'{filename[:-3]} loaded', WARNING_LEVEL['medium'])
-    except Exception:
-        log('An error occured while loading extensions', WARNING_LEVEL['high'])
-        raise Exception('Failed to load extensions')
 
-    try:
-        for filename in os.listdir('./commands'):
-            if filename.endswith(".py"):
-                client.load_extension(f'commands.{filename[:-3]}')
-                log(f'{filename[:-3]} loaded', WARNING_LEVEL['medium'])
-    except Exception:
-        log('An error occured while loading extensions', WARNING_LEVEL['high'])
-        raise Exception('Failed to load extensions')
+    loadExtensions(client, 'cogs', './cogs')
+    loadExtensions(client, 'commands', './commands')
+    
+    # try:
+    #     for filename in os.listdir('./cogs'):
+    #         if filename.endswith(".py"):
+    #             client.load_extension(f'cogs.{filename[:-3]}')
+    #             log(f'{filename[:-3]} loaded', WARNING_LEVEL['medium'])
+    # except Exception:
+    #     log('An error occured while loading extensions', WARNING_LEVEL['high'])
+    #     raise Exception('Failed to load extensions')
+
+    # try:
+    #     for filename in os.listdir('./commands'):
+    #         if filename.endswith(".py"):
+    #             client.load_extension(f'commands.{filename[:-3]}')
+    #             log(f'{filename[:-3]} loaded', WARNING_LEVEL['medium'])
+    # except Exception:
+    #     log('An error occured while loading extensions', WARNING_LEVEL['high'])
+    #     raise Exception('Failed to load extensions')
 
     log('Extensions loaded', WARNING_LEVEL['medium'])
-    
-    extDataDir = os.getcwd()
-    if getattr(sys, 'frozen', False):
-        extDataDir = sys._MEIPASS
-    load_dotenv(dotenv_path=os.path.join(extDataDir, '.env'))
+
+    load_dotenv()
     client.run(os.getenv("TOKEN"))
 
 if __name__ == '__main__':

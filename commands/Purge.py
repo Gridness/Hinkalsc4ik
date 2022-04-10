@@ -11,11 +11,14 @@ class Purge(commands.Cog):
 
     server_id = SERVER_ID
 
-    @nextcord.slash_command(name='purge', guild_ids=[server_id], description='Removes all roles from a user')
-    async def purge(self, member: nextcord.Member):
-        await member.remove_roles()
-        await member.send(embed=build_embed(self.client, 'НАКОЛОЧКИ, НАКОЛОЧКИ', 'ГОП, ТАТУИРОВОЧКИ', EMBED_COLOR, False))
-        log(f'{member} has lost all his roles. Oh no')
+    @nextcord.slash_command(name='purge', description='Removes all roles from a user', guild_ids=[server_id,])
+    async def purge(self, interaction: nextcord.Interaction, member: nextcord.Member = nextcord.SlashOption(description='Declare a member to be purged'), jail: str = nextcord.SlashOption(description='Temporary does nothing')):
+        if jail is None or jail == '':
+            await member.remove_roles()
+            await member.send(embed=build_embed(self.client, 'НАКОЛОЧКИ, НАКОЛОЧКИ', 'ГОП, ТАТУИРОВОЧКИ', EMBED_COLOR, False))
+            log(f'{member} has lost all his roles thanks to {interaction.user.id}. Oh no')
+        else:
+            pass
 
 def setup(client):
     client.add_cog(Purge(client))

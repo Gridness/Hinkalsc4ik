@@ -1,6 +1,6 @@
 META = {
     "name" : "Хинкальщик",
-    "ver" : "1.5.1",
+    "ver" : "2.0",
     "dev" : "Gridness, Wasyas",
     "license" : "MIT"
 }
