@@ -11,8 +11,11 @@ class Add(commands.Cog):
 
     server_id = SERVER_ID
 
-    @nextcord.slash_command(name='add', description='Adds something to the database', guild_ids=[server_id,])
-    async def add(self, interaction: nextcord.Interaction, type: str = nextcord.SlashOption(description='A joke or a status?'), data: str = nextcord.SlashOption(description='What exactly do you want to add?')):
+    @nextcord.slash_command(name='add', description='Adds something to the database', guild_ids=[server_id])
+    async def add(self, 
+    interaction: nextcord.Interaction, 
+    type: str = nextcord.SlashOption(description='A joke or a status?', choices={'1': 'joke', '2': 'status'}), 
+    data: str = nextcord.SlashOption(description='What exactly do you want to add?')):
         if type == 'joke':
             async with aiosqlite.connect(DEFAULT_DB_PATH) as db:
                 async with db.cursor() as cursor:

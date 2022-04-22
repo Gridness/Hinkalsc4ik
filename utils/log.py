@@ -8,7 +8,7 @@ except ImportError:
 
 from data.warningLevel import WARNING_LEVEL
 
-def log(logText, color = WARNING_LEVEL['default'], logType = 'log'):
+def log(logText: str, color: str = WARNING_LEVEL['default'], logType: str = 'log') -> None:
     console = Console()
 
     if logType == 'log':

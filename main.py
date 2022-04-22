@@ -1,5 +1,6 @@
 import os
 from utils.loadExtensions import loadExtensions
+from utils.rollout import rollout
 
 try:
     import nextcord
@@ -19,34 +20,16 @@ def main():
     intents = nextcord.Intents.all()
     intents.members = True
     
-    client = commands.Bot(command_prefix = 'abobus!', intents = intents)
+    load_dotenv()
+    client = commands.Bot(command_prefix = os.getenv("PREFIX"), intents = intents)
 
     log('Loading extensions...', WARNING_LEVEL['medium'])
 
     loadExtensions(client, 'cogs', './cogs')
     loadExtensions(client, 'commands', './commands')
-    
-    # try:
-    #     for filename in os.listdir('./cogs'):
-    #         if filename.endswith(".py"):
-    #             client.load_extension(f'cogs.{filename[:-3]}')
-    #             log(f'{filename[:-3]} loaded', WARNING_LEVEL['medium'])
-    # except Exception:
-    #     log('An error occured while loading extensions', WARNING_LEVEL['high'])
-    #     raise Exception('Failed to load extensions')
-
-    # try:
-    #     for filename in os.listdir('./commands'):
-    #         if filename.endswith(".py"):
-    #             client.load_extension(f'commands.{filename[:-3]}')
-    #             log(f'{filename[:-3]} loaded', WARNING_LEVEL['medium'])
-    # except Exception:
-    #     log('An error occured while loading extensions', WARNING_LEVEL['high'])
-    #     raise Exception('Failed to load extensions')
 
     log('Extensions loaded', WARNING_LEVEL['medium'])
 
-    load_dotenv()
     client.run(os.getenv("TOKEN"))
 
 if __name__ == '__main__':

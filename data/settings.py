@@ -10,4 +10,6 @@ PING_LOOP_TIME = 60.0
 STATUS_LOOP_TIME = 20.0
 MESSAGE_LIFECYCLE_DURATION = 20.0
 
-DEFAULT_DB_PATH = os.path.abspath('../data/main.db')
+PARSING_URL = 'https://www.anekdot.ru/'
+
+DEFAULT_DB_PATH = os.path.abspath('..\\main.db')

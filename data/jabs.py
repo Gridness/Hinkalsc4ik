@@ -1,3 +1,0 @@
-PHOTOJABS_URL = [
-    
-]

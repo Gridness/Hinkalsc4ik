@@ -2,7 +2,6 @@ import nextcord
 from nextcord.ext import commands, tasks
 
 from data.settings import STATUS_LOOP_TIME
-from data.config.config import CONFIG
 from utils.phrases.presencePhrases import PRESENCE_PHRASES
 from utils.log import log
 from utils.randomHandler import pickAndRemoveRepeatingStatuses
@@ -16,8 +15,7 @@ class Phrases(commands.Cog):
         newPresence = pickAndRemoveRepeatingStatuses(PRESENCE_PHRASES)
         await self.client.change_presence(activity=nextcord.Game(name=newPresence))
 
-        if CONFIG["logging"]["displayPresenceChange"]:
-            log(f'Changed presence to {newPresence}')
+        log(f'Changed presence to {newPresence}')
 
 def setup(client):
     client.add_cog(Phrases(client))
