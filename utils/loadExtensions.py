@@ -6,6 +6,7 @@ from data.warningLevel import WARNING_LEVEL
 from utils.rollout import rollout
 
 def loadExtensions(client: commands.Bot, extensionType: str, relativeExtensionsPath: str, loadType: str = 'load') -> None:
+    """Loads or reloads all extensions of the bot"""
     if loadType == 'load':
         try:
             for filename in os.listdir(relativeExtensionsPath):

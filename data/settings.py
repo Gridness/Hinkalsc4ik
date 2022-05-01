@@ -11,5 +11,6 @@ STATUS_LOOP_TIME = 20.0
 MESSAGE_LIFECYCLE_DURATION = 20.0
 
 PARSING_URL = 'https://www.anekdot.ru/'
+JABS_PARSING_LIMIT = 100
 
-DEFAULT_DB_PATH = os.path.abspath('..\\main.db')
+DEFAULT_DB_PATH = os.path.abspath('main.db')

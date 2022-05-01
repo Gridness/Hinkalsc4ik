@@ -1,6 +1,5 @@
 import os
 from utils.loadExtensions import loadExtensions
-from utils.rollout import rollout
 
 try:
     import nextcord

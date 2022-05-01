@@ -9,16 +9,16 @@ from utils.buildEmbed import build_embed
 from utils.log import log
 from utils.parser.parser import parse
 
+server_id = SERVER_ID
+
 class Joke(commands.Cog):
     def __init__(self, client) -> None:
         self.client = client
 
-    server_id = SERVER_ID
-
     @nextcord.slash_command(name='joke', description='Returns a random joke', guild_ids=[server_id])
     async def joke(self, 
     interaction: nextcord.Interaction, 
-    source: str = nextcord.SlashOption(description='Choose the source of the joke', choices={'1': 'db', '2': 'anekdot.ru'})):
+    source: str = nextcord.SlashOption(description='Choose the source of the joke', choices={'database': 'db', 'anekdot.ru': 'anekdot.ru'})):
         if source == 'db':
             try:
                 async with aiosqlite.connect(DEFAULT_DB_PATH) as db:

@@ -37,7 +37,13 @@ class Ready(commands.Cog):
         async with aiosqlite.connect(DEFAULT_DB_PATH) as db:
             async with db.cursor() as cursor:
                 await cursor.execute('CREATE TABLE IF NOT EXISTS jokes (jokeID INTEGER, joke TEXT, PRIMARY KEY("jokeID" AUTOINCREMENT))')
+                log('Successfully connected to the database', WARNING_LEVEL['medium'])
+            await db.commit()
+
+        async with aiosqlite.connect(DEFAULT_DB_PATH) as db:
+            async with db.cursor() as cursor:
                 await cursor.execute('CREATE TABLE IF NOT EXISTS statuses (statusID INTEGER, status TEXT, PRIMARY KEY("statusID" AUTOINCREMENT))')
+                log('Successfully connected to the database', WARNING_LEVEL['medium'])
             await db.commit()
 
         if now.year == 2022:

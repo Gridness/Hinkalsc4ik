@@ -9,6 +9,7 @@ except ImportError:
 from data.warningLevel import WARNING_LEVEL
 
 def log(logText: str, color: str = WARNING_LEVEL['default'], logType: str = 'log') -> None:
+    """Log anything you'd like"""
     console = Console()
 
     if logType == 'log':

@@ -7,14 +7,14 @@ from data.warningLevel import WARNING_LEVEL
 from utils.loadExtensions import loadExtensions
 from utils.log import log
 
+server_id = SERVER_ID
+
 class Reload(commands.Cog):
     def __init__(self, client) -> None:
         self.client = client
 
-    server_id = SERVER_ID
-
     @nextcord.slash_command(name='reload', description='Reloads the bot', guild_ids=[server_id])
-    async def reload(self):
+    async def reload(self, interaction: nextcord.Interaction):
         log('Reloading extensions...', WARNING_LEVEL['medium'])
 
         loadExtensions(self.client, 'cogs', './cogs', 'reload')
