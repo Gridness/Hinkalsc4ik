@@ -1,3 +1,8 @@
+"""
+Pelmenolog v2.0 (c) Gridness, Wasyas
+This software is licensed under the GNU GPL 3.0 license. All rights reserved
+The project is open-source. You can use its code wherever and however you want
+"""
 import os
 from utils.loadExtensions import loadExtensions
 
