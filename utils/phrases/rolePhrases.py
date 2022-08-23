@@ -1,3 +1,0 @@
-ROLE_PHRASES = [
-    'WelCUM'
-]
