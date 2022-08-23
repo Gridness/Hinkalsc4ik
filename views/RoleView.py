@@ -21,7 +21,7 @@ class RoleView(nextcord.ui.View):
         await interaction.user.add_roles(role)
         log(f'{interaction.user} was given a role {role}')
 
-        await interaction.user.send(embed=build_embed(self.client, random.choice(ROLE_PHRASES), '', EMBED_COLOR, False, hasImage=True, imageUrl='https://cdn.discordapp.com/attachments/949307046212272128/952645972880678972/22608D94-EA77-4054-B000-53B46C336302.png'))
+        await interaction.user.send(embed=build_embed(self.client, random.choice(ROLE_PHRASES), '', EMBED_COLOR, False, hasImage=True, imageUrl=''))
         await interaction.delete_original_message(delay=MESSAGE_LIFECYCLE_DURATION)
 
     async def handleKickButtonClick(self, button: nextcord.ui.Button, interaction: nextcord.Interaction):
