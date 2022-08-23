@@ -31,7 +31,7 @@ class Add(commands.Cog):
 
             await interaction.channel.send(embed=build_embed(self.client, 'Ваш крутой статус был добавлен', 'Шо?', EMBED_COLOR, False))
         else:
-            await interaction.channel.send(embed=build_embed(self.client, 'Долбаеб?', '', EMBED_COLOR, False))
+            await interaction.channel.send(embed=build_embed(self.client, '?', '', EMBED_COLOR, False))
 
 def setup(client):
     client.add_cog(Add(client))
